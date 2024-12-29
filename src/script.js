@@ -38,7 +38,7 @@ async function getMostUsedLanguage(username, rank = 0, displayOnSite = false) {
 }
 
 function getUrlParameter(name) {
-    name = name.replace(/[\[\]]/g, '\\$&');
+    name = name.replace(/[\[\]]/g, '\\$&'); // Экранирование квадратных скобок
     const regex = new RegExp(`[\\?&]${name}=([^&#]*)`);
     const results = regex.exec(location.search);
     return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
