@@ -1,6 +1,9 @@
 # GetMostUsedLanguages
 The function fetches a GitHub user's repositories, counts the languages used, and returns the language most frequently used based on the specified rank.
-
+# Example:
+```
+https://get-most-used-languages.vercel.app/?user=meigoc&rank=6
+```
 # Use in own code:
 ```html
 <!DOCTYPE html>
