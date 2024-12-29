@@ -1,10 +1,11 @@
-async function getMostUsedLanguage(username, rank = 0) {
+async function getMostUsedLanguage(username, rank = 0, displayOnSite = false) {
     try {
         const response = await fetch(`https://api.github.com/users/${username}/repos`);
         const repos = await response.json();
 
         if (repos.message) {
             console.error('User not found or access error');
+            if (displayOnSite) document.getElementById('output').textContent = 'Error: User not found or access error';
             return 'Error: User not found or access error';
         }
 
@@ -22,9 +23,16 @@ async function getMostUsedLanguage(username, rank = 0) {
         const sortedLanguages = Object.keys(languageCounts).sort((a, b) => languageCounts[b] - languageCounts[a]);
 
         const selectedLanguage = sortedLanguages[rank] || 'No data';
+
+        if (displayOnSite) {
+            const outputElement = document.getElementById('output');
+            if (outputElement) outputElement.textContent = selectedLanguage;
+        }
+
         return selectedLanguage;
     } catch (error) {
         console.error('Error fetching data:', error);
+        if (displayOnSite) document.getElementById('output').textContent = 'Error fetching data';
         return 'Error fetching data';
     }
 }
