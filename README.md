@@ -14,7 +14,7 @@ The function fetches a GitHub user's repositories, counts the languages used, an
     <h1>Most Used Language</h1>
     <p id="output">Loading...</p>
     
-    <script src="script.js"></script>
+    <script src="https://get-most-used-languages.vercel.app/src/script.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
