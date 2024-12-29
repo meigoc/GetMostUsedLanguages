@@ -5,15 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <p id="output"></p>
-    <script src="src/script.js"></script>
+    <p id="output">...</p> 
+    <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
-            const username = 'meigoc';
-            const rank = 0;
-            const language = await getMostUsedLanguage(username, rank, true); // true для вывода на сайт
-            console.log(`Most used language for ${username}: ${language}`);
+            const username = getUrlParameter('user') || 'meigoc';
+            const rankParam = getUrlParameter('rank');
+            const rank = rankParam ? parseInt(rankParam, 10) : 0;
+            const language = await getMostUsedLanguage(username, rank, true); 
+            console.log(`Language #${rank + 1} for ${username}: ${language}`);
         });
     </script>
 </body>
 </html>
+
