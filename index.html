@@ -3,10 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Language Checker</title>
 </head>
 <body>
     <p id="output"></p>
-    <script src="src/script.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const username = 'meigoc';
+            const rank = 0;
+            const language = await getMostUsedLanguage(username, rank, true); // true для вывода на сайт
+            console.log(`Most used language for ${username}: ${language}`);
+        });
+    </script>
 </body>
 </html>
