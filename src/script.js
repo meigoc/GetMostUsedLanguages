@@ -22,8 +22,6 @@ async function getMostUsedLanguage(username, rank = 0) {
         const sortedLanguages = Object.keys(languageCounts).sort((a, b) => languageCounts[b] - languageCounts[a]);
 
         const selectedLanguage = sortedLanguages[rank] || 'No data';
-        
-        console.log(`Language #${rank + 1} for ${username}: ${selectedLanguage}`);
         return selectedLanguage;
     } catch (error) {
         console.error('Error fetching data:', error);
@@ -32,7 +30,7 @@ async function getMostUsedLanguage(username, rank = 0) {
 }
 
 function getUrlParameter(name) {
-    name = name.replace(/[\[\]]/g, '\\$&'); // Экранирование квадратных скобок
+    name = name.replace(/[\[\]]/g, '\\$&');
     const regex = new RegExp(`[\\?&]${name}=([^&#]*)`);
     const results = regex.exec(location.search);
     return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
@@ -41,11 +39,12 @@ function getUrlParameter(name) {
 document.addEventListener('DOMContentLoaded', async () => {
     const username = getUrlParameter('user');
     const rank = parseInt(getUrlParameter('rank'), 10) || 0;
+    const outputElement = document.getElementById('output');
 
     if (username) {
         const language = await getMostUsedLanguage(username, rank);
-        console.log(`Language #${rank + 1} for ${username}: ${language}`);
+        outputElement.textContent = language;
     } else {
-        console.error('User parameter is missing');
+        outputElement.textContent = 'Error: User parameter is missing';
     }
 });
